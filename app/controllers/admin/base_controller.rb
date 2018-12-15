@@ -1,6 +1,7 @@
 class Admin::BaseController < ApplicationController
   include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :authenticate_admin!, unless: :devise_controller?
+  around_action :set_thread_footprint_actor
 
   def toggle_switch
     field = params[:field]
@@ -17,5 +18,15 @@ class Admin::BaseController < ApplicationController
       end
       render json: {value: model[field], msg: 'successfully'}, status: 200 and return
     end
+  end
+
+  private
+
+  def set_thread_footprint_actor
+    Footprintable::Current.actor = current_admin
+    yield
+  ensure
+    # to address the thread variable leak issues in Puma/Thin webserver
+    Footprintable::Current.actor = nil
   end
 end

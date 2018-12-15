@@ -10,5 +10,9 @@ defaults format: :json do
   mount_devise_token_auth_for 'Admin', at: 'admin_auth'
   namespace :admin do
     resources :bomber_sources
+    resources :categories do
+      get :index_roots, on: :collection
+      put :toggle_switch, :update_position, :increment_position, :decrement_position, on: :member
+    end
   end
 end
