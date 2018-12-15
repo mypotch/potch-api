@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: one
+  author_type: Author
+  commentable: one
+  commentable_type: Commentable
+  content: MyString
+  enabled: false
+
+two:
+  author: two
+  author_type: Author
+  commentable: two
+  commentable_type: Commentable
+  content: MyString
+  enabled: false

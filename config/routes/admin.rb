@@ -14,5 +14,6 @@ defaults format: :json do
       get :index_roots, on: :collection
       put :toggle_switch, :update_position, :increment_position, :decrement_position, on: :member
     end
+    resources :posts
   end
 end

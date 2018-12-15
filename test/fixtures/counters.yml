@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  counterable: one
+  counterable_type: Counterable
+  comments_count: 1
+  votes_count: 1
+  views_count: 1
+
+two:
+  counterable: two
+  counterable_type: Counterable
+  comments_count: 1
+  votes_count: 1
+  views_count: 1

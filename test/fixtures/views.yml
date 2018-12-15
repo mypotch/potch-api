@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: one
+  author_type: Author
+  viewable: one
+  viewable_type: Viewable
+  ip: MyString
+
+two:
+  author: two
+  author_type: Author
+  viewable: two
+  viewable_type: Viewable
+  ip: MyString

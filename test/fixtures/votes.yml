@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: one
+  author_type: Author
+  voteable: one
+  voteable_type: Voteable
+  enabled: false
+
+two:
+  author: two
+  author_type: Author
+  voteable: two
+  voteable_type: Voteable
+  enabled: false

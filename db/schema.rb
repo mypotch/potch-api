@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_15_035941) do
+ActiveRecord::Schema.define(version: 2018_12_15_144320) do
 
   create_table "admins", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "provider", default: "email", null: false
@@ -67,6 +67,39 @@ ActiveRecord::Schema.define(version: 2018_12_15_035941) do
     t.index ["ancestry"], name: "index_categories_on_ancestry"
   end
 
+  create_table "categories_posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id"
+    t.bigint "post_id"
+    t.index ["category_id"], name: "index_categories_posts_on_category_id"
+    t.index ["post_id"], name: "index_categories_posts_on_post_id"
+  end
+
+  create_table "comments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "author_type"
+    t.bigint "author_id"
+    t.string "commentable_type"
+    t.bigint "commentable_id"
+    t.string "content"
+    t.string "ip"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_comments_on_author_type_and_author_id"
+    t.index ["commentable_type", "commentable_id"], name: "index_comments_on_commentable_type_and_commentable_id"
+    t.index ["ip"], name: "index_comments_on_ip"
+  end
+
+  create_table "counters", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "countable_type"
+    t.bigint "countable_id"
+    t.integer "comments_count", default: 0
+    t.integer "votes_count", default: 0
+    t.integer "views_count", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["countable_type", "countable_id"], name: "index_counters_on_countable_type_and_countable_id"
+  end
+
   create_table "footprints", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.text "before"
     t.text "after"
@@ -81,4 +114,46 @@ ActiveRecord::Schema.define(version: 2018_12_15_035941) do
     t.index ["trackable_type", "trackable_id"], name: "index_footprints_on_trackable_type_and_trackable_id"
   end
 
+  create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "counter_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.string "pid"
+    t.string "title"
+    t.text "content"
+    t.boolean "enabled", default: true
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_posts_on_author_type_and_author_id"
+    t.index ["counter_id"], name: "index_posts_on_counter_id"
+    t.index ["pid"], name: "index_posts_on_pid", unique: true
+  end
+
+  create_table "views", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "author_type"
+    t.bigint "author_id"
+    t.string "viewable_type"
+    t.bigint "viewable_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_views_on_author_type_and_author_id"
+    t.index ["ip"], name: "index_views_on_ip"
+    t.index ["viewable_type", "viewable_id"], name: "index_views_on_viewable_type_and_viewable_id"
+  end
+
+  create_table "votes", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.string "author_type"
+    t.bigint "author_id"
+    t.string "voteable_type"
+    t.bigint "voteable_id"
+    t.string "ip"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_votes_on_author_type_and_author_id"
+    t.index ["ip"], name: "index_votes_on_ip"
+    t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
+  end
+
+  add_foreign_key "posts", "counters"
 end
