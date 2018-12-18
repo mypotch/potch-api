@@ -15,4 +15,9 @@ class Category < ApplicationRecord
   def name_with_parents
     self.ancestors.pluck(:name).push(self.name).join('/')
   end
+
+  # subtree 包含自身和所有子孙
+  def subtree_posts
+    Post.joins(:categories).merge(subtree)
+  end
 end
