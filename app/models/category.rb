@@ -2,6 +2,8 @@ class Category < ApplicationRecord
   include Footprintable
   has_footprints(except: [:updated_at, :created_at])
 
+  has_one_attached :icon
+
   has_ancestry
   acts_as_list scope: [:category, :ancestry]
 
