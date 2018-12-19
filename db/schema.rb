@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_17_113735) do
+ActiveRecord::Schema.define(version: 2018_12_19_005618) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -145,6 +145,7 @@ ActiveRecord::Schema.define(version: 2018_12_17_113735) do
     t.boolean "enabled", default: true
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "desc"
     t.index ["author_type", "author_id"], name: "index_posts_on_author_type_and_author_id"
     t.index ["counter_id"], name: "index_posts_on_counter_id"
     t.index ["pid"], name: "index_posts_on_pid", unique: true
