@@ -9,5 +9,6 @@ module BomberSourceForm
     property :data
     property :result
 
+    validates :title, :url, presence: true
   end
 end

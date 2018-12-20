@@ -1,0 +1,21 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  author: one
+  author_type: Author
+  name: MyString
+  desc: MyString
+  devices: MyString
+  units: MyString
+  usage: MyText
+  demo_code: MyText
+
+two:
+  author: two
+  author_type: Author
+  name: MyString
+  desc: MyString
+  devices: MyString
+  units: MyString
+  usage: MyText
+  demo_code: MyText

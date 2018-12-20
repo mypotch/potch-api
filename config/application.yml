@@ -1,0 +1,6 @@
+default: &default
+  oss_host: 'https://potch.oss-cn-hangzhou.aliyuncs.com'
+  node_host: 'http://localhost:4001'
+
+development:
+  <<: *default

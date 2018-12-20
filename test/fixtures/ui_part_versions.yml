@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  px_hash: 
+  rem_hash: MyString
+  desc: MyString
+
+two:
+  px_hash: 
+  rem_hash: MyString
+  desc: MyString

@@ -52,6 +52,11 @@ gem 'acts_as_list'
 
 gem 'activestorage-aliyun'
 
+# 网络请求库
+gem 'httparty'
+# 请求转向
+gem 'rails-reverse-proxy'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: [:mri, :mingw, :x64_mingw]

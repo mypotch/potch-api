@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_19_005618) do
+ActiveRecord::Schema.define(version: 2018_12_20_050429) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -151,6 +151,50 @@ ActiveRecord::Schema.define(version: 2018_12_19_005618) do
     t.index ["pid"], name: "index_posts_on_pid", unique: true
   end
 
+  create_table "ui_part_version_files", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "ui_part_version_id"
+    t.string "fid"
+    t.string "name"
+    t.string "file"
+    t.integer "category", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["fid"], name: "index_ui_part_version_files_on_fid"
+    t.index ["ui_part_version_id"], name: "index_ui_part_version_files_on_ui_part_version_id"
+  end
+
+  create_table "ui_part_versions", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "ui_part_id"
+    t.string "vid"
+    t.string "px_hash"
+    t.string "rem_hash"
+    t.string "desc"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["ui_part_id"], name: "index_ui_part_versions_on_ui_part_id"
+    t.index ["vid"], name: "index_ui_part_versions_on_vid"
+  end
+
+  create_table "ui_parts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
+    t.bigint "category_id"
+    t.string "author_type"
+    t.bigint "author_id"
+    t.string "pid"
+    t.string "name"
+    t.string "desc"
+    t.string "devices"
+    t.string "units"
+    t.text "usage"
+    t.text "demo_code"
+    t.integer "ui_part_versions_count", default: 0
+    t.integer "permission", default: 0
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_type", "author_id"], name: "index_ui_parts_on_author_type_and_author_id"
+    t.index ["category_id"], name: "index_ui_parts_on_category_id"
+    t.index ["pid"], name: "index_ui_parts_on_pid"
+  end
+
   create_table "views", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "author_type"
     t.bigint "author_id"
@@ -178,4 +222,7 @@ ActiveRecord::Schema.define(version: 2018_12_19_005618) do
   end
 
   add_foreign_key "posts", "counters"
+  add_foreign_key "ui_part_version_files", "ui_part_versions"
+  add_foreign_key "ui_part_versions", "ui_parts"
+  add_foreign_key "ui_parts", "categories"
 end

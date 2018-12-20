@@ -13,7 +13,6 @@ class Post < ApplicationRecord
   private
 
   def before_create
-    self.pid = generate_id
     self.counter ||= Counter.create
   end
 end
