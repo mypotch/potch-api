@@ -4,6 +4,11 @@ class Admin::CategoriesController < Admin::BaseController
     br_index categories
   end
 
+  def category_types
+    @types = Category.categories.keys.map{|category_type| {type: category_type}}
+    render json: {items: @types}.as_json
+  end
+
   def update_position
     br_show do |category|
       if params[:parent_id].present? && params[:parent_id] != category.parent_id

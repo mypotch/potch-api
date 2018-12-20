@@ -11,7 +11,7 @@ defaults format: :json do
   namespace :admin do
     resources :bomber_sources
     resources :categories do
-      get :index_roots, on: :collection
+      get :index_roots, :category_types, on: :collection
       put :toggle_switch, :update_position, :increment_position, :decrement_position, on: :member
     end
     resources :posts

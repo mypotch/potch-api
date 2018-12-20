@@ -9,10 +9,10 @@ class Category < ApplicationRecord
 
   has_and_belongs_to_many :posts
 
-  enum category: { category_money: 0 }
+  enum category: { category_money: 0,  category_ui: 1 }
   ransacker :category, formatter: proc { |v| categories[v] }
 
-  validates :category, inclusion: {in: ["category_money"]}
+  validates :category, inclusion: {in: Category.categories.keys}
 
   def name_with_parents
     self.ancestors.pluck(:name).push(self.name).join('/')
