@@ -27,7 +27,9 @@ defaults format: :json do
         get :index_roots, :category_types, on: :collection
         put :toggle_switch, :update_position, :increment_position, :decrement_position, on: :member
       end
-      resources :posts
+      resources :posts, model_name: 'Post' do
+        resources :comments
+      end
     end
   end
 end
