@@ -70,6 +70,9 @@ group :development do
   # better errors
   gem "better_errors"
   gem "binding_of_caller"
+  # deploy
+  gem 'mina'
+  gem 'mina-puma', :require => false
 end
 
 
