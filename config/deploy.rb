@@ -11,7 +11,8 @@ require 'mina/puma'
 #   branch       - Branch name to deploy. (needed by mina/git)
 
 set :application_name, 'potch-api'
-set :domain, 'deploy@39.104.121.122'
+set :domain, 'mars@47.93.21.147'
+# set :domain, 'deploy@39.104.121.122'
 set :deploy_to, '/mnt/www/zezeping/potch/potch-api'
 set :repository, 'git@github.com:mypotch/potch-api.git'
 set :branch, 'master'
@@ -61,7 +62,7 @@ task :deploy do
     invoke :'git:clone'
     invoke :'deploy:link_shared_paths'
     invoke :'bundle:install'
-    invoke :'rails:db_create'
+    # invoke :'rails:db_create'
     invoke :'rails:db_migrate'
     # invoke :'rails:assets_precompile'
     invoke :'deploy:cleanup'
