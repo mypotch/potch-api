@@ -33,13 +33,13 @@ local:
 #   primary: local
 #   mirrors: [ amazon, google, microsoft ]
 
-#local:
-#  service: Aliyun
-#  access_key_id: "LTAIwdm37jvQySgZ"
-#  access_key_secret: "juYPTswGjbKDZdPjdsSivpOI6LhvFL"
-#  bucket: "potch"
-#  endpoint: "https://oss-cn-hangzhou-internal.aliyuncs.com"
-#  # path prefix, default: /
-#  path: "storage"
-#  # Bucket mode: [public, private], default: public
-#  mode: "public"
+aliyun:
+  service: Aliyun
+  access_key_id: "LTAIwdm37jvQySgZ"
+  access_key_secret: "juYPTswGjbKDZdPjdsSivpOI6LhvFL"
+  bucket: "potch"
+  endpoint: "https://oss-cn-hangzhou-internal.aliyuncs.com"
+  # path prefix, default: /
+  path: "storage"
+  # Bucket mode: [public, private], default: public
+  mode: "public"
