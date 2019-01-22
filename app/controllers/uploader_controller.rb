@@ -6,9 +6,9 @@ class UploaderController < ApplicationController
         content_type: params[:file].content_type
     )
     # 本地存储
-    if ActiveStorage::Blob.service.is_a? ActiveStorage::Service::DiskService
+    if ActiveStorage::Blob.service.send(:service_name) === 'Disk'
       render json: { link: url_for(blob), signed_id: blob.signed_id }, status: 200
-    else # aliyun
+    else # Aliyun
       render json: { link: blob.service_url, signed_id: blob.signed_id }, status: 200
     end
 
