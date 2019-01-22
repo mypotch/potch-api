@@ -7,7 +7,7 @@
 #   end
 # end
 defaults format: :json do
-  constraints subdomain: /\Aapa/ do
+  constraints subdomain: /\apapt/ do
     mount_devise_token_auth_for 'Admin', at: 'admin_auth'
     # namespace :admin do
     scope module: 'admin' do

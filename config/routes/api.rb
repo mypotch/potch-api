@@ -3,7 +3,7 @@
 #   resources :anyname
 # end
 defaults format: :json do
-  constraints subdomain: /\Aapi/ do
+  constraints subdomain: /\Aapipt/ do
     # namespace :api do
     scope module: 'api' do
       namespace :v1 do
