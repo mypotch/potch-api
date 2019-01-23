@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_12_20_050429) do
+ActiveRecord::Schema.define(version: 2019_01_23_082027) do
 
   create_table "active_storage_attachments", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.string "name", null: false
@@ -136,7 +136,6 @@ ActiveRecord::Schema.define(version: 2018_12_20_050429) do
   end
 
   create_table "posts", options: "ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_0900_ai_ci", force: :cascade do |t|
-    t.bigint "counter_id"
     t.string "author_type"
     t.bigint "author_id"
     t.string "pid"
@@ -147,7 +146,6 @@ ActiveRecord::Schema.define(version: 2018_12_20_050429) do
     t.datetime "updated_at", null: false
     t.string "desc"
     t.index ["author_type", "author_id"], name: "index_posts_on_author_type_and_author_id"
-    t.index ["counter_id"], name: "index_posts_on_counter_id"
     t.index ["pid"], name: "index_posts_on_pid", unique: true
   end
 
@@ -221,7 +219,6 @@ ActiveRecord::Schema.define(version: 2018_12_20_050429) do
     t.index ["voteable_type", "voteable_id"], name: "index_votes_on_voteable_type_and_voteable_id"
   end
 
-  add_foreign_key "posts", "counters"
   add_foreign_key "ui_part_version_files", "ui_part_versions"
   add_foreign_key "ui_part_versions", "ui_parts"
   add_foreign_key "ui_parts", "categories"

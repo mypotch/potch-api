@@ -7,6 +7,7 @@ class Api::V1::PostsController < Api::V1::BaseController
 
   def show
     @post = Post.find_by(pid: params[:pid])
+    @post.counter.add_views_count
   end
 
   private

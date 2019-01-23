@@ -1,5 +1,4 @@
 class Admin::BaseController < ApplicationController
-  include DeviseTokenAuth::Concerns::SetUserByToken
   before_action :authenticate_admin!, unless: :devise_controller?
   around_action :set_thread_footprint_actor
 
